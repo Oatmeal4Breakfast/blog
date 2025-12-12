@@ -1,15 +1,3 @@
-from datetime import date
-from flask import Flask, abort, render_template, redirect, url_for, flash, request
-from flask_bootstrap import Bootstrap5
-from flask_ckeditor import CKEditor
-from flask_login import login_user, LoginManager, current_user, logout_user
-from functools import wraps
-from werkzeug.security import generate_password_hash, check_password_hash
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
 # Import your forms from the forms.py
 from forms import (
     CreatePostForm,
@@ -22,6 +10,18 @@ from forms import (
 )
 from models import BlogPost, User, db, Comment
 from helpers import user_exists, is_safe
+
+from datetime import date
+from flask import Flask, abort, render_template, redirect, url_for, flash, request
+from flask_bootstrap import Bootstrap5
+from flask_ckeditor import CKEditor
+from flask_login import login_user, LoginManager, current_user, logout_user
+from functools import wraps
+from werkzeug.security import generate_password_hash, check_password_hash
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 
 def admin_only(f):
