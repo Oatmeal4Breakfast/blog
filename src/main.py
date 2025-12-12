@@ -48,7 +48,7 @@ def load_user(user_id) -> User | None:
     return db.session.get(User, user_id)
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URI")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DB_URL")
 db.init_app(app)
 
 with app.app_context():
