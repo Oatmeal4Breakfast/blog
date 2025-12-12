@@ -17,6 +17,8 @@ dependencies = [
     "flask-wtf>=1.2.2",
     "gravatar>=0.1",
     "greenlet>=3.3.0",
+    "gunicorn>=23.0.0",
     "itsdangerous>=2.2.0",
     "markupsafe>=3.0.3",
+    "psycopg2-binary>=2.9.11",
 ]
