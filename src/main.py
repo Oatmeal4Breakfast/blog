@@ -20,6 +20,7 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
 import os
+import string
 
 load_dotenv()
 
@@ -48,7 +49,11 @@ def load_user(user_id) -> User | None:
     return db.session.get(User, user_id)
 
 
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRES_URL")
+database_url = os.getenv("POSTGRES_URL")
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgressql://", 1)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 db.init_app(app)
 
 with app.app_context():
@@ -119,7 +124,6 @@ def get_all_posts():
     return render_template("index.html", all_posts=posts)
 
 
-# TODO: Allow logged-in users to comment on posts
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
     requested_post = db.get_or_404(BlogPost, post_id)
