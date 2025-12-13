@@ -51,7 +51,7 @@ def load_user(user_id) -> User | None:
 
 database_url = os.getenv("POSTGRES_URL")
 if database_url and database_url.startswith("postgres://"):
-    database_url = database_url.replace("postgres://", "postgresql://", 1)
+    database_url = database_url.replace("postgres://", "postgresql+psycopg://", 1)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 db.init_app(app)
