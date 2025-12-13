@@ -49,7 +49,7 @@ def load_user(user_id) -> User | None:
     return db.session.get(User, user_id)
 
 
-database_url = os.getenv("POSTGRES_URL")
+database_url = os.getenv("DB_URL")
 if database_url and database_url.startswith("postgres://"):
     database_url = database_url.replace("postgres://", "postgresql+psycopg://", 1)
 
